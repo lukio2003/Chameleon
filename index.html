@@ -7,10 +7,10 @@ body{
 	background-color: #86eb34;
 	color: #074707;
 	font-family: 'Aclonica';
-	font-size: 25px;
+	font-size: 50px;
 }
 h{
-	font-size: 50px ;
+	font-size: 80px ;
 	
 }
 p{
@@ -19,19 +19,19 @@ p{
 #TitleDiv{
 	margin: 0px;
 	padding: 10px;
-	width: 90%;
+	width: 100%;
 	text-align: center;
 }
 #inputs,#showdiv{
 	margin: 0px;
 	padding: 0px;
-	width: 90%;
+	width: 100%;
 	text-align: center;
 }
 #playdiv{
 	margin: 0px;
 	padding: 0px;
-	width : 90%;
+	width : 100%;
 	text-align: center;
 }
 #campic{
@@ -41,32 +41,37 @@ p{
 	display: none;
 }
 .InpClass{
-	height: 40px;
-	width: 200px;
+	height: 80px;
+	width: 300px;
+	margin: 10px;
 	text-align: center;
 	color: #074707;
 	font-family: 'Aclonica';
-	font-size: 25px;
+	font-size: 50px;
+	vertical-align: middle;
+	background-color: #CCEEFF;
 }
 .updnbut{
-	height: 40px;
-	width: 40px;
-	font-size: 28px;
-	margin: 10px;
+	height: 80px;
+	width: 80px;
+	font-size: 50px;
+	margin: 0px 10px;
 	text-align: center;
 	vertical-align: middle;
 	color: #074707;
 	font-family: 'Aclonica';
+	background-color: #AACCFF;
 }
 .ButClass{
-	height: 100px;
-	width: 200px;
-	font-size: 28px;
+	height: 200px;
+	width: 400px;
+	font-size: 50px;
 	margin: 30px;
 	text-align: center;
 	vertical-align: middle;
 	color: #074707;
 	font-family: 'Aclonica';
+	background-color: #AACCFF;
 }
 .gamebut{
 	height: 200px;
@@ -91,6 +96,8 @@ var CoOrds = "A1";
 var i;
 var disable = 0;
 var Playing = 3;
+var firstload = 0;
+var MaxPlay = 10;
 
 var RandArray = [23, 131, 94, 71, 160, 72, 20, 55, 43, 129, 165, 91, 38, 39, 112, 203, 90, 176, 183, 68, 63, 192, 116, 104, 147, 70, 186, 88, 58, 168, 151, 79, 98, 177, 42, 190, 97, 140, 144, 125, 141, 204, 122, 10, 22, 166, 194, 162, 173, 154, 48, 40, 57, 121, 29, 30, 181, 13, 61, 64, 195, 85, 123, 142, 110, 175, 16, 92, 138, 200, 170, 96, 163, 132, 119, 66, 83, 145, 28, 14, 155, 127, 153, 31, 205, 34, 9, 86, 136, 15, 114, 101, 103, 178, 89, 156, 19, 182, 169, 76, 206, 115, 77, 126, 167, 36, 80, 24, 46, 4, 187, 120, 117, 82, 44, 75, 107, 159, 128, 201, 109, 65, 189, 67, 56, 207, 93, 133, 3, 12, 180, 139, 47, 209, 143, 73, 113, 161, 60, 102, 8, 106, 146, 171, 184, 54, 137, 148, 51, 27, 1, 21, 53, 174, 11, 111, 172, 33, 5, 84, 2, 208, 157, 188, 124, 130, 149, 41, 198, 134, 164, 135, 69, 52, 37, 49, 105, 25, 99, 35, 81, 78, 118, 74, 7, 193, 185, 18, 62, 150, 158, 196, 59, 197, 95, 199, 108, 17, 50, 152, 211, 87, 210, 45, 100, 26, 179, 32, 202, 6, 191] ;
 
@@ -103,7 +110,9 @@ var im = "iVBORw0KGgoAAAANSUhEUgAAALQAAACnCAYAAAC4j3YHAAAAAXNSR0IArs4c6QAAAARnQU
 
 window.onload = function(){
 document.getElementById("game").value = 1;
-document.getElementById("players").value = 3;
+//document.getElementById("players").value = 3;
+document.getElementById("PLtxt").innerHTML = "Enter number of players (3 to " + MaxPlay + "):";
+document.getElementById("players").style.background = "#FFFF00";
 };
 
 function but(type){
@@ -111,17 +120,68 @@ var ValIn = document.getElementById("game").value;
 var Players = document.getElementById("players").value;
 switch(type)
 {
-		case 0: ValIn--; break;
-		case 1: ValIn++; break;
-		case 2: ValIn = Math.round(Math.random() * 999999) + 1; break;
-		case 3: ValIn = Math.round(ValIn); break;
-		case 5: Players--; break;
-		case 6: Players++; break;
+		case 0: ValIn--;
+				if(firstload < 2)
+				 {
+				  document.getElementById("game").style.background = "#CCEEFF";
+				  document.getElementById("playbut").style.background = "#FFFF00";
+				  firstload = 2;
+				 }
+				 break;
+		case 1: ValIn++;
+				if(firstload < 2)
+				 {
+				  document.getElementById("game").style.background = "#CCEEFF";
+				  document.getElementById("playbut").style.background = "#FFFF00";
+				  firstload = 2;
+				 }
+				 break;
+		case 2: ValIn = Math.round(Math.random() * 999999) + 1;		
+				if(firstload < 2)
+				 {
+				  document.getElementById("game").style.background = "#CCEEFF";
+				  document.getElementById("playbut").style.background = "#FFFF00";
+				  firstload = 2;
+				 }
+				 break;
+		case 4: Players = Math.round(Players);
+				if(firstload < 1)
+				 {
+				  document.getElementById("players").style.background = "#CCEEFF";
+				  document.getElementById("game").style.background = "#FFFF00";
+				  firstload = 1;
+				 }
+				break;
+		case 3: ValIn = Math.round(ValIn);
+				if(firstload < 2)
+				 {
+				  document.getElementById("game").style.background = "#CCEEFF";
+				  document.getElementById("playbut").style.background = "#FFFF00";
+				  firstload = 2;
+				 }
+				 break;
+		case 5: Players--;
+				if(firstload < 1)
+				 {
+				  document.getElementById("players").style.background = "#CCEEFF";
+				  document.getElementById("game").style.background = "#FFFF00";
+				  firstload = 1;
+				 }
+				 break;
+		case 6: Players++;
+				if(firstload < 1)
+				 {
+				  document.getElementById("players").style.background = "#CCEEFF";
+				  document.getElementById("game").style.background = "#FFFF00";
+				  firstload = 1;
+				  Players = 3;
+				 }
+				 break;
 }
 if(ValIn < 1){ValIn = 999999;}
 if(ValIn > 999999){ValIn = 1;}
-if(Players > 10){Players = 3;}
-if(Players < 3){Players = 10;}
+if(Players > MaxPlay){Players = 3;}
+if(Players < 3){Players = MaxPlay;}
 document.getElementById("game").value = ValIn;
 document.getElementById("players").value = Players;
 }
@@ -140,9 +200,21 @@ if(disable == 0)
   ChameleonNumber = (RandArray[randInd] % Playing) + 1;
   CoOrds = coordarray[(RandArray[randInd] % maxcoord)];
   document.getElementById("playdiv").innerHTML = makediv;
-  document.getElementById("PlayText").innerHTML = "This is game " + ValIn + ".<br><br>Click on your number to find out if you are the chameleon or get the word co-ordinates.<br><br>The chameleon or co-ordinates will disapear after 3s."
+  document.getElementById("PlayText").innerHTML = "This is game " + ValIn + ".<br>Click on your number!"
   document.getElementById("showbut").style.display = "inline-block";
-  //document.getElementById("test").innerHTML = "Player " + ChameleonNumber + " is the Chameleon. The word is at " + CoOrds;
+  if(firstload > 2)
+   {
+    document.getElementById("showbut").style.background = "#AACCFF"; 
+    firstload = 5;
+   }
+  if(firstload < 3)
+   {
+   document.getElementById("players").style.background = "#CCEEFF"; 
+   document.getElementById("game").style.background = "#CCEEFF";
+   document.getElementById("playbut").style.background = "#AACCFF";
+   firstload = 3;
+   }
+
  }
 }
 
@@ -153,7 +225,6 @@ if(disable == 0)
   var textid = "p" + idclick;
   var divid = "gb" + idclick;
   if(idclick != ChameleonNumber){document.getElementById(textid).innerHTML = CoOrds;}
-  //else{document.getElementById(textid).innerHTML = "CH";}
   else{document.getElementById(divid).innerHTML = '<img id="campic" src="data:image/png;base64,' + im + '">';}
   document.getElementById("playbut").style.color = "#AAAAAA";
   document.getElementById("showbut").style.color = "#AAAAAA";
@@ -170,6 +241,11 @@ if(disable == 0)
   document.getElementById("playbut").style.color = "#074707";
   document.getElementById("showbut").style.color = "#074707";
  }
+ if(firstload < 4)
+   {
+   document.getElementById("showbut").style.background = "#FFFF00"; 
+   firstload = 4;
+   }
 }
 
 function show (){
@@ -178,7 +254,12 @@ for(i = 0; i < Playing; i++)
     disable = 0;
 	rev(i+1);
    }
-   disable = i;
+disable = i;
+if(firstload < 5)
+ {
+  document.getElementById("showbut").style.background = "#AACCFF"; 
+  firstload = 5;
+ }
 }
 
 </script>
@@ -188,16 +269,16 @@ for(i = 0; i < Playing; i++)
 <h>WHO CAN CATCH THE CHAMELEON?</h>
 </div>
 <div id="inputs">
-<p>Enter number of players (3 to 10):</p>
+<p id="PLtxt">Enter number of players:</p>
 <button type="button" class="updnbut" onclick="but(5)" id="pdnbut" >-</button>
-<input type="number" id="players" min="3" max="10" class="InpClass" onchange="but(4)">
+<input type="number" id="players" class="InpClass" onchange="but(4)">
 <button type="button" class="updnbut" onclick="but(6)" id="pupbut" >+</button>
 <p>Enter game number:</p>
 <button type="button" class="updnbut" onclick="but(0)" id="dnbut" >-</button>
 <input type="number" id="game" min="0" max="999999" class="InpClass" onchange="but(3)">
 <button type="button" class="updnbut" onclick="but(1)" id="upbut" >+</button>
 <br>
-<button type="button" class="updnbut" onclick="but(2)" id="dnbut" style="width: 180px;">RANDOM</button>
+<button type="button" class="updnbut" onclick="but(2)" id="dnbut" style="width: 300px;">RANDOM</button>
 <br>
 <button type="button" class="ButClass" onclick="play()" id="playbut" >PLAY!</button>
 <p id="PlayText"></p>
